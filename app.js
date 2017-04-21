@@ -1,7 +1,6 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var port     = process.env.PORT || 9090;
 
 //MongoDB ODM
 var mongoose = require('mongoose');
@@ -42,6 +41,3 @@ app.use('/tetcss', express.static(path.join(__dirname, 'node_modules/tether/dist
 app.use('/', index);
 //end of routers
 module.exports = app;
-
-//app.listen(port);
-//console.log('Sa inceapa distractia ' + port);
