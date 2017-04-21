@@ -77,6 +77,30 @@ area:hover {
 	width: 50%;
 	margin-bottom: 10px;
 }
+/*create account*/
+#field1 label {
+	border: none!important;
+	background: none;
+	margin-left: 25px;
+	font-size: 15px;
+	color: black;
+}
+#field1 input{
+	width: 13%;
+    top: 30%;
+    left: 25%;
+    height: 13px;
+}
+/*add Poll*/
+#submitForm {
+	width: 15%;
+	height: 40px;
+	font-size: 14px;
+}
+#pollFormWrappper {
+	background: white;
+	padding: 20px;
+}
 /*other classes*/
 .pull-right {
 	float: right;
