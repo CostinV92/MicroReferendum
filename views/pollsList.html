@@ -67,7 +67,7 @@
 				    <li><a href="#">Votarile mele</a></li>
 				    <li><a href="/addPoll">Adauga votare</a></li>
 				    <li role="separator" class="divider"></li>
-				    <li><a href="#">Creare cont</a></li>
+				    <li><a href="#myPopup2" data-rel="popup">Creare cont</a></li>
 				</ul>
 			</div>
 			<!-- CATEGORY FILTER -->
@@ -83,26 +83,36 @@
 				<label>Parcuri</label>
 				<input type="checkbox" class="messageCheckbox" name="parcuri" id="SV" onclick="add_cat(id)">
 				<label>Spatii Verzi</label>
-				<button class="btn btn-primary" id="applyBtn" onclick="create_polls_list()"><span style="width: 100%;">Aplica</span></button>
+				<button class="btn btn-default" id="applyBtn" onclick="create_polls_list()"><span style="width: 100%;">Aplica</span></button>
 			</div>
 			<!-- POLLS LIST -->
 			<div id="poll-list" class="col-xs-10">
 
-			Lista POLL-uri filtrate incarcate dinamic
+			Lista POLL-uri filtrate pe judet incarcate dinamic
 			</div>
-			<!-- Login POPUP -->
-		   	<div data-role="popup" id="myPopup" class="ui-content" data-overlay-theme="b" data-transition="pop" data-position-to="window"	>
-				<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
-		  		<div id="load-login">
-					<p>Introduceti datele de autentificare.</p>
-					<form>
-						<lable>Nume utilizator:</lable>
-						<input type="text" name="username" id="username">
-						<lable>Parola:</lable>
-						<input type="text" name="password" id="password" style=""/>
-					</form>
-					<button type="submit" onclick="login_info()" class="btn" id="logare"><span>Autentificare</span></button>
-				</div>
+		</div>
+		<!-- Poll PopUp -->
+		<div data-role="popup" id="pollPopup" class="ui-content" data-overlay-theme="b" data-transition="pop" data-position-to="window">
+			<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	  		<div id="poll-vote">
+	  			
+
+	  		</div>
+	  	</div>
+
+		<!-- Login POPUP -->
+	   	<div data-role="popup" id="myPopup" class="ui-content" data-overlay-theme="b" data-transition="pop" data-position-to="window">
+			<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+	  		<div id="load-login">
+				<p>Introduceti datele de autentificare.</p>
+				<hr style="margin-top: 0px;">
+				<form action="/login" method="post">
+					<lable>Nume utilizator:</lable>
+					<input type="text" name="username" id="username"/>
+					<lable>Parola:</lable>
+					<input type="text" name="password" id="password" style=""/>
+					<input type="submit" value="Autentificare" type="button" class="btn btn-default" id="logare"/>
+				</form> 
 			</div>
 		</div>
 		<!-- Auth Menu-->

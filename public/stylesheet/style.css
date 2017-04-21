@@ -9,7 +9,7 @@
     background: #e9e9ea;
 
 }
-#login {
+/*#login {
 	font-size: 18px;
 	margin-right: 10px;
 	margin-top: 10px;
@@ -18,7 +18,7 @@
 
 #login:hover {
 	color: #be0f18;
-}
+}*/
 
 #password {
 	-webkit-text-security: circle;
