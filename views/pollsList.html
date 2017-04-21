@@ -9,6 +9,43 @@
 	<link rel="stylesheet" type="text/css" href="/stylesheet/style.css">
 	<script type="text/javascript" src="/scripts/functionality.js"></script>
 	<script type="text/javascript" src="/scripts/mapResize.js"></script>
+	<script type="text/javascript">
+                function Captcha(){
+                     var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+                     var i;
+                     for (i=0;i<6;i++){
+                       var a = alpha[Math.floor(Math.random() * alpha.length)];
+                       var b = alpha[Math.floor(Math.random() * alpha.length)];
+                       var c = alpha[Math.floor(Math.random() * alpha.length)];
+                       var d = alpha[Math.floor(Math.random() * alpha.length)];
+                       var e = alpha[Math.floor(Math.random() * alpha.length)];
+                       var f = alpha[Math.floor(Math.random() * alpha.length)];
+                       var g = alpha[Math.floor(Math.random() * alpha.length)];
+                      }
+                    var code = a + ' ' + b + ' ' + ' ' + c + ' ' + d + ' ' + e + ' '+ f + ' ' + g;
+                    document.getElementById("mainCaptcha").value = code;
+                }
+                function ValidCaptcha(){
+                      var string1 = removeSpaces(document.getElementById('mainCaptcha').value);
+                      var string2 = removeSpaces(document.getElementById('txtInput').value);
+                      if (string1 == string2){
+                        return true;
+                      }
+                      else{        
+                        return false;
+                      }
+                }
+                function removeSpaces(string){
+                    return string.split(' ').join('');
+                }
+				function Hide1() {
+					document.getElementById("field1").style.display = "block"; 
+					document.getElementById("fileset0").style.display = "none";
+					document.getElementById("field2").style.display = "block"; 
+					document.getElementById("field3").style.display = "block"; 
+					Captcha();
+				}
+    </script> 
 </head>
 <body>
 	<link href='bootcss/bootstrap.min.css' rel='stylesheet' />
@@ -66,6 +103,43 @@
 					</form>
 					<button type="submit" onclick="login_info()" class="btn" id="logare"><span>Autentificare</span></button>
 				</div>
+			</div>
+		</div>
+		<!-- Auth Menu-->
+		<div data-role="popup" id="myPopup2" class="ui-content" data-overlay-theme="b" data-transition="pop" data-position-to="window">
+    		<a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      		<div id="load-auth">
+				<form>
+					<fieldset id="fileset0">
+						<legend> Introduceti datele de autentificare. </legend>
+							<label>Nume: </label>
+							<input type="text" name="nume" onclick="Captcha();">
+							<label>Prenume :</label>
+							<input type="text" name="prenume">
+							<label>Email :</label>
+							<input type="text" name="email">
+							<label>Cod numeric personal :</label>
+							<input type="text" name="CNP">
+							<input type="button" value="Continua" onClick="Hide1();">
+							<input type="reset">
+					</fieldset>
+					<fieldset id="field1" data-role="controlgroup" data-type="horizontal" style="display:none">
+						<legend>Alegeti tipul de utilizator:</legend>
+							<label> <input type="checkbox" name="inlineButton" value="01">Admin </label>
+							<label> <input type="checkbox" name="inlineButton" value="02">Moderator </label>
+							<label> <input type="checkbox" name="inlineButton" value="03">Normal </label>
+					</fieldset>
+					<br/>
+					<fieldset id="field2" data-role="controlgroup" data-type="horizontal" style="display:none">
+					        <input type="button" id="mainCaptcha" onclick="Captcha();"/> Inserati in casuta textul din staga
+							<input type="text" id="txtInput"/>    
+					</fieldset>	
+				    <br/>
+					<fieldset id="field3" data-role="controlgroup" data-type="horizontal" style="display:none">
+						<input type="Submit"  value="Submit" onclick="ValidCaptcha();">
+						<input type="reset">
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>
