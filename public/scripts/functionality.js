@@ -24,10 +24,10 @@ function filter_by_county(id) {
 }
 
 //Pentru test
-polls = [{category: 'SP' , subject: 'Spital judetean' , description: 'laassjfbs sjbsj b bsjb js jsjb sbsbdsb sbdj sbjd bsjsbj sbj ' , startDate: '20/03/2017' , endDate: 'Wed Dec 22 2010 16:16:07 GMT+0000' },
-		{category: 'SC' , subject: 'Scoala primara', description:'sdfsdfs sfsd', startDate: '12/04/2017' , endDate: '15/04/2017' },
-		{category: 'DR', subject: 'Drumuri europene' , description: 'dfdfd' , startDate: '12/04/2017' , endDate: '22/06/2017'},
-		{category: 'SP', subject: 'Spital central' , description: 'afdfsf dsfsd' , startDate: '21/04/2017' , endDate: '03/05/2017' }];
+polls = [{category: 'SP' , subject: 'Spital judetean' , description: 'Primarul orasului Bihor vrea sa deschida sectia pentru urologie in spitalul judetean. ' , startDate: '03/20/2017' , endDate: '04/25/2017' },
+		{category: 'SC' , subject: 'Scoala primara', description:'sdfsdfs sfsd', startDate: '04/12/2017' , endDate: '04/15/2017' },
+		{category: 'DR', subject: 'Drumuri europene' , description: 'dfdfd' , startDate: '04/12/2017' , endDate: '06/22/2017'},
+		{category: 'SP', subject: 'Spital central' , description: 'afdfsf dsfsd' , startDate: '04/21/2017' , endDate: '05/03/2017' }];
 
 function put_id(data) {
 	var index = 0;
@@ -58,7 +58,7 @@ function create_polls_list() {
 	for (var i = 0; i < polls.length; ++i) {
 		for(var j = 0; j < filterList.length; ++j)
 			if (polls[i].category === filterList[j]) {
-				html += '<li id="'+ polls[i].id + '" class="classForPolls" ><h4>' + polls[i].subject + '</h4></li>';
+				html += '<li id="'+ polls[i].id + '"><h4>' + polls[i].subject + '</h4></li>';
 				html += '<a href="#pollPopup" data-rel="popup" onclick="create_poll('+ "'" + polls[i].id + "'" +')">';
 				html += '<p>' + polls[i].description + '</p>';
 				html += '</a>';
@@ -75,18 +75,27 @@ function create_poll(id) {
 		if (pollsListFiltred[i].id === id) {
 			html += '<h4>' + pollsListFiltred[i].subject + '</h4>';			
 			html += '<p>' + pollsListFiltred[i].description + '</p>';
-			/*if (pollsListFiltred[i].endDate >= currentDate) {*/
-				html += '<p style="color:red;">Mai sunt <b>' + pollsListFiltred[i].endDate - currentDate + '</b> zile pana la inchiderea votului.</p>';
+			pollsListFiltred[i].endDate = new Date(pollsListFiltred[i].endDate);
+			if (pollsListFiltred[i].endDate >= currentDate) {				
+				html += '<p style="color:red;">Mai sunt <b>' + from_milis_to_days(pollsListFiltred[i].endDate - currentDate) + '</b> zile pana la inchiderea votului.</p>';
 				html += '<p>Sunteti de acord?</p>';
+				html += '<div id="vote">';
 				html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id)">DA</button>';
 				html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id)">NU</button>';
-			/*} else { */
+				html += '</div>';
+			} else { 
 				html += '<p>Votul s-a incheiat.</p>';
 				html += '<span>Rezultatul votului este:' + /*procent*/ '% DA -' /*procent*/ + '% NU</span><br>';
-			/*}*/
+			}
 			
 		}
 	$("div#poll-vote").html(html);
+}
+function from_milis_to_days(date) {
+	//86400000 milisecounds in a day
+	var days = Math.round(date / 86400000);
+	console.log(days);
+	return days;
 }
 
 function submit_vote(id) {
@@ -95,6 +104,7 @@ function submit_vote(id) {
 		vot = 0;
 	else
 		vot = 1;
+	$("div#vote").html('<p class="text-center"><b>Va multumim!</b></p>');
 	$.post('votes/add', function(vot){
 		console.log('Vot trimis cu succes.');
 	});
