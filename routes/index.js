@@ -20,7 +20,7 @@ router.post('/login', function(req, res) {
 });
 
 router.post('/addPoll', function(req, res) {
-    return res.send('ok');
+    return mrefctrl.addPoll(req, res);
 });
 
 module.exports = router;

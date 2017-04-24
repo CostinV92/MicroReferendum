@@ -118,7 +118,8 @@ function submit_vote(id) {
 function poll_info()
 {
     var title = $('#pollTitle').val();
-    var desc = $('pollDesc').val();
+    var desc = $('#pollDesc').val();
+    var endDate = $('#endDate').val();
     var category = [];
     var county = [];
 
@@ -130,7 +131,7 @@ function poll_info()
     county.push($(this).val());
     });
 
-    $.post("/addPoll", {Titlu: title, Description: desc, EndDate: endDate, Categories:category, Counties: county}, function(){alert('daaa, a mers')}).fail(function() {
+    $.post("/addPoll", {title: title, desc: desc, endDate:endDate, category:JSON.stringify(category), county:JSON.stringify(county)}, function(){}).fail(function() {
     	alert( "error" );
   	});
 }
