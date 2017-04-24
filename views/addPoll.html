@@ -79,21 +79,23 @@
 					* Descriere: <textarea id="pollDesc" rows="5" cols="50" required></textarea>
 
 					* Data de incheiere a votarii:
-					<input type="date" name="endVote">
+					<input type="date" name="endVote" id="endDate" required>
 					
 					* Categorie: 
 					<label>
-						<input type="checkbox" id="firstCat" name="category" value="Drumuri">
+						<input type="radio" id="firstCat" name="category" value="Drumuri" required>
 						Drumuri
 					</label>
-					<input type="checkbox" id="secondCat" name="category" value="Scoli">
-					<label for="secondCat">Scoli</label>
+					<label for="secondCat">
+						<input type="radio" id="secondCat" name="category" value="Scoli" required>
+						Scoli
+					</label>
 					
 					* Judet:
-			  		<input type="checkbox" id="firstJud" name="judet" value="b">
+			  		<input type="radio" id="firstJud" name="judet" value="Bucuresti" required>
 					<label for="firstJud">Bucuresti</label>
-			  		<input type="checkbox" id="secondJud" name="judet" value="ct">
-					<label for="secondJud">Constanta</label>
+			  		<input type="radio" id="secondJud" name="judet" value="Bihor" required>
+					<label for="secondJud">Bihor</label>
 					
 					<button id="submitForm" class="btn btn-default pull-right" type="submit" onclick="poll_info()">Adauga Poll</button>
 

@@ -67,14 +67,7 @@ area:hover {
 	width: 50%;
 	margin-bottom: 10px;
 }
-input:required {
-  border: 1px solid red;
-  outline: none;
-}
-textarea:required {
-  border: 1px solid red;
-  outline: none;
-}
+
 /*create account*/
 #field1 label {
 	border: none!important;
