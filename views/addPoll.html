@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Poll</title> 
+	<title>Adauga votare</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>	
 	<link rel="stylesheet" type="text/css" href="/stylesheet/style.css">
 	<script type="text/javascript" src="/scripts/functionality.js"></script>
-	<script type="text/javascript" src="/scripts/mapResize.js"></script>
 	<script type="text/javascript">
                 function Captcha(){
                      var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
@@ -52,7 +51,6 @@
 	<link href='bootcss/bootstrap.min.css' rel='stylesheet' />
 	<script src="bootjs/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.js"></script>
 	<div id="addPollDiv">
 		<div class="bottom col-xs-12">
 			<a href="/"><img class="pull-left" id="logo" src="/stylesheet/Imgs/logo.jpg"/></a>
@@ -64,10 +62,10 @@
 				    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 				</button>
 				<ul class="dropdown-menu" id="menu1">
-				    <li><a href="#myPopup" data-rel="popup">Autentificare</a></li>
+				    <li><a href="#myPopup" data-rel="popup" id="logare">Autentificare</a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#">Votarile mele</a></li>
-				    <li><a href="#">Adauga votare</a></li>
+				    <!-- <li><a href="#">Adauga votare</a></li> -->
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#myPopup2" data-rel="popup">Creare cont</a></li>
 				</ul>
@@ -125,8 +123,8 @@
 					<input type="text" name="username" id="username">
 					<lable>Parola:</lable>
 					<input type="text" name="password" id="password" style=""/>
+					<input type="submit" onclick="login_info()" class="btn btn-default" value="Autentificare">
 				</form>
-				<button type="submit" onclick="login_info()" class="btn" id="logare"><span>Autentificare</span></button>
 			</div>
     	</div>
 		

@@ -11,7 +11,6 @@ function login_info() {
   	});*/
   	$("li#logare").html("<a href='#myPopup' data-rel='popup'>Iesire din cont</a>");
   	$('div#myPopup').hide();
-  	$('div#myPopup-screen').removeClass("in ui-overlay-b ui-popup-screen");
 }
 //end Login
 //harta

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title> 
+	<title>Lista de votari</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>	
 	<link rel="stylesheet" type="text/css" href="/stylesheet/style.css">
 	<script type="text/javascript" src="/scripts/functionality.js"></script>
-	<script type="text/javascript" src="/scripts/mapResize.js"></script>
 	<script type="text/javascript">
                 function Captcha(){
                      var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
@@ -51,7 +50,6 @@
 	<link href='bootcss/bootstrap.min.css' rel='stylesheet' />
 	<script src="bootjs/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-	<script type="text/javascript" src="http://davidlynch.org/projects/maphilight/jquery.maphilight.js"></script>
 	<div id="pollsDiv">
 		<div class="bottom col-xs-12">
 			<a href="/"><img class="pull-left" id="logo" src="/stylesheet/Imgs/logo.jpg"/></a>	
@@ -104,13 +102,13 @@
 	  		<div id="load-login">
 				<p>Introduceti datele de autentificare.</p>
 				<hr style="margin-top: 0px;">
-				<form action="/login" method="post">
+				<form>
 					<lable>Nume utilizator:</lable>
-					<input type="text" name="username" id="username"/>
+					<input type="text" name="username" id="username">
 					<lable>Parola:</lable>
 					<input type="text" name="password" id="password" style=""/>
-					<input type="submit" value="Autentificare" type="button" class="btn btn-default" id="logare"/>
-				</form> 
+					<input type="submit" onclick="login_info()" class="btn btn-default" value="Autentificare">
+				</form>
 			</div>
 		</div>
 		<!-- Auth Menu-->
