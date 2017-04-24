@@ -1,13 +1,13 @@
 var model = require('../models/mref.server.model.js')
 
-exports.home = function(req, res) {
+exports.renderHome = function(req, res) {
     res.render('home');
 };
 
-exports.pollsList = function(req, res) {
+exports.renderPollsList = function(req, res) {
     res.render('pollsList');
 };
 
-exports.addPoll = function(req, res) {
+exports.renderAddPoll = function(req, res) {
     res.render('addPoll');
 };
