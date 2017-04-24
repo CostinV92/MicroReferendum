@@ -11,7 +11,6 @@ function login_info() {
   	});*/
   	$("li#logare").html("<a href='#myPopup' data-rel='popup'>Iesire din cont</a>");
   	$('div#myPopup').hide();
-  	$('div#myPopup-screen').removeClass("in ui-overlay-b ui-popup-screen");
 }
 //end Login
 //harta
@@ -25,9 +24,19 @@ function filter_by_county(id) {
   	});
 
   	polls = put_id($.parseJSON(data));
+  	var html; = '<ol>';
+  	for (var i = 0; i < polls.length; ++i) {
+		html += '<li id="'+ polls[i].id + '"><h4>' + polls[i].subject + '</h4></li>';
+		html += '<a href="#pollPopup" data-rel="popup" onclick="create_poll('+ "'" + polls[i].id + "'" +')">';
+		html += '<p>' + polls[i].description + '</p>';
+		html += '</a>';
+		pollsListFiltred[p++] = polls[i];
+	}
+	html += '</ol>';
+	$('div#poll-list').html(html);
 }
 
-//Pentru test
+//Pentru test -- de sters dupa ce vin datele de la server
 polls = [{category: 'SP' , subject: 'Spital judetean' , description: 'Primarul orasului Bihor vrea sa deschida sectia pentru urologie in spitalul judetean. ' , startDate: '03/20/2017' , endDate: '04/30/2017' },
 		{category: 'SC' , subject: 'Scoala primara', description:'sdfsdfs sfsd', startDate: '04/12/2017' , endDate: '04/15/2017' },
 		{category: 'DR', subject: 'Drumuri europene' , description: 'dfdfd' , startDate: '04/12/2017' , endDate: '06/22/2017'},
@@ -55,7 +64,7 @@ function add_cat(id) {
 }
 
 function create_polls_list() {
-	put_id(polls);
+	put_id(polls);//trebuie scos dupa ce vin bine datele de la server
 	var html = '<ol>';
 	var p = 0;
 	var index = 0;
@@ -72,7 +81,7 @@ function create_polls_list() {
 	html += '</ol>';
 	$("div#poll-list").html(html);
 }
-
+//in popup
 function create_poll(id) {
 	var html = '<div>';
 	for (var i = 0; i < pollsListFiltred.length; ++i) 
