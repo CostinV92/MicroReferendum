@@ -13,7 +13,7 @@ function login_info() {
 //end Login
 //harta
 function filter_by_county(id) {
-	$.get('/polls/' + id)
+	$.get('/pollsList?id=' + id)
 	.done(function(data) { 
 		return data;
 	})
