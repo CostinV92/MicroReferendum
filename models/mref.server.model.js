@@ -15,8 +15,9 @@ var userSchema = new Schema({
 var referendumSchema = new Schema({
     subject:        String,
     tags:           [],
+    region:         [],
     startDate:      Date,
-    endData:        Date,
+    endDate:        Date,
     description:    String,
     public:         Boolean,
     result:         String

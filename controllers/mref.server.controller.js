@@ -23,19 +23,39 @@ exports.addPoll = function(req, res) {
     // debug
     console.log(poll);
 
+
     if(validatePoll(poll)) {
-        addPollToDb(poll);
+        addPollToDb(poll, res);
     } else {
-        console.log('Invalid poll: \n' + poll)
+        res.status(400).send();
+        console.log('Invalid poll: \n' + JSON.stringify(poll));
+        return;
     }
 
     res.send('ok');
 };
 
-function validatePoll() {
+function validatePoll(poll) {
+    if(!poll.title
+        || !poll.desc
+            || !poll.endDate
+                || poll.category.length == 0
+                    || poll.county.length == 0) {
+        return false
+    }
+
     return true;
 }
 
-function addPollToDb(poll){
-
+function addPollToDb(poll, res){
+    Poll = new model.Referendum();
+    Poll.subject = poll.title;
+    Poll.tags = poll.category;
+    Poll.region = poll.county;
+    Poll.startDate = new Date();
+    Poll.endDate = new Date(poll.endDate);
+    Poll.description = poll.desc;
+    Poll.public = true;
+    
+    Poll.save();
 }

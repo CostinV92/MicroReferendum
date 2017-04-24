@@ -131,7 +131,15 @@ function poll_info()
     county.push($(this).val());
     });
 
-    $.post("/addPoll", {title: title, desc: desc, endDate:endDate, category:JSON.stringify(category), county:JSON.stringify(county)}, function(){}).fail(function() {
-    	alert( "error" );
-  	});
+    $.ajax({
+		url: '/addPoll',
+		type: 'POST',
+		data: JSON.stringify({'title': title, 'desc': desc, 'endDate':endDate, 'category':category, county:county}),
+		contentType: 'application/json; charset=utf-8',
+		dataType: 'json',
+		async: false,
+		success: function(msg) {
+		alert(msg);
+		}
+	});
 }
