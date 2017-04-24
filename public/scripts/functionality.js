@@ -130,7 +130,7 @@ function poll_info()
     county.push($(this).val());
     });
 
-    $.post("/addPoll", {Titlu: title, Description: desc, Categories:category, Counties: county}, function(){alert('daaa, a mers')}).fail(function() {
+    $.post("/addPoll", {Titlu: title, Description: desc, EndDate: endDate, Categories:category, Counties: county}, function(){alert('daaa, a mers')}).fail(function() {
     	alert( "error" );
   	});
 }

@@ -74,14 +74,14 @@
 			</div>	
 			<div id="pollFormWrappper" class="col-xs-offset-1 col-xs-10 col-xs-offset-1">
 				<form id="pollForm">
-					Titlu: <input type="text" id="pollTitle">
+					* Titlu: <input type="text" id="pollTitle" required>
 					
-					Descriere: <textarea id="pollDesc" rows="5" cols="50"></textarea>
+					* Descriere: <textarea id="pollDesc" rows="5" cols="50" required></textarea>
 
-					Data de incheiere a votarii:
-					<input type="date" name="endDate">
+					* Data de incheiere a votarii:
+					<input type="date" name="endVote">
 					
-					Categorie: 
+					* Categorie: 
 					<label>
 						<input type="checkbox" id="firstCat" name="category" value="Drumuri">
 						Drumuri
@@ -89,7 +89,7 @@
 					<input type="checkbox" id="secondCat" name="category" value="Scoli">
 					<label for="secondCat">Scoli</label>
 					
-					Judet:
+					* Judet:
 			  		<input type="checkbox" id="firstJud" name="judet" value="b">
 					<label for="firstJud">Bucuresti</label>
 			  		<input type="checkbox" id="secondJud" name="judet" value="ct">
