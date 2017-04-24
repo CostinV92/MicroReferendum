@@ -106,7 +106,7 @@ area:hover {
 	padding-right: 0px !important;
 }
 
-input[type=radio   ]:not(old){
+input[type=radio]:not(old){
   width   : 28px;
   margin  : 0;
   padding : 0;
