@@ -16,7 +16,7 @@ function login_info() {
 //harta
 function filter_by_county(id) {
 	$.get('/pollsList?id=' + id)
-	.done(function(data) { 
+	.done(function(data) {
 		return data;
 	})
 	.fail(function() {
@@ -24,7 +24,7 @@ function filter_by_county(id) {
   	});
 
   	polls = put_id($.parseJSON(data));
-  	var html; = '<ol>';
+	var html = '<ol>';
   	for (var i = 0; i < polls.length; ++i) {
 		html += '<li id="'+ polls[i].id + '"><h4>' + polls[i].subject + '</h4></li>';
 		html += '<a href="#pollPopup" data-rel="popup" onclick="create_poll('+ "'" + polls[i].id + "'" +')">';

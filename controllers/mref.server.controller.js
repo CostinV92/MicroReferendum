@@ -5,7 +5,24 @@ exports.renderHome = function(req, res) {
 };
 
 exports.renderPollsList = function(req, res) {
-    res.render('pollsList');
+    var region = req.query.id;
+    if(typeof region == 'undefined') {
+        res.render('pollsList');
+        return;
+    }
+
+    model.Referendum.find({'region': region}, function(err, polls) {
+        if(err) {
+            console.log(err);
+            res.status(500).send();
+        } else {
+            res.render('pollsList', function(err, viewString) {
+                polls.view = viewString;
+                console.log(polls);
+                res.json(polls);
+            });
+        }
+    });
 };
 
 exports.renderAddPoll = function(req, res) {
@@ -47,7 +64,16 @@ function validatePoll(poll) {
     return true;
 }
 
-function addPollToDb(poll, res){
+function getPollsByCounty(id, res) {
+    model.Referendum.find({'region': id}, function(err, polls) {
+        if(err)
+            console.log(err);
+        else
+            res.json(polls);
+    });
+}
+
+function addPollToDb(poll, res) {
     Poll = new model.Referendum();
     Poll.subject = poll.title;
     Poll.tags = poll.category;
@@ -56,6 +82,6 @@ function addPollToDb(poll, res){
     Poll.endDate = new Date(poll.endDate);
     Poll.description = poll.desc;
     Poll.public = true;
-    
+
     Poll.save();
 }
