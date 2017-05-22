@@ -14,39 +14,7 @@ function login_info() {
 }
 //end Login
 //harta
-function filter_by_county(id) {
-	$.get('/pollsList?id=' + id)
-	.done(function(data) {
-		return data;
-	})
-	.fail(function() {
-    	alert( "error" );
-  	});
 
-  	polls = put_id($.parseJSON(data));
-	var html = '<ol>';
-  	for (var i = 0; i < polls.length; ++i) {
-		html += '<li id="'+ polls[i].id + '"><h4>' + polls[i].subject + '</h4></li>';
-		html += '<a href="#pollPopup" data-rel="popup" onclick="create_poll('+ "'" + polls[i].id + "'" +')">';
-		html += '<p>' + polls[i].description + '</p>';
-		html += '</a>';
-		pollsListFiltred[p++] = polls[i];
-	}
-	html += '</ol>';
-	$('div#poll-list').html(html);
-}
-
-//Pentru test -- de sters dupa ce vin datele de la server
-polls = [{category: 'SP' , subject: 'Spital judetean' , description: 'Primarul orasului Bihor vrea sa deschida sectia pentru urologie in spitalul judetean. ' , startDate: '03/20/2017' , endDate: '04/30/2017' },
-		{category: 'SC' , subject: 'Scoala primara', description:'sdfsdfs sfsd', startDate: '04/12/2017' , endDate: '04/15/2017' },
-		{category: 'DR', subject: 'Drumuri europene' , description: 'dfdfd' , startDate: '04/12/2017' , endDate: '06/22/2017'},
-		{category: 'SP', subject: 'Spital central' , description: 'afdfsf dsfsd' , startDate: '04/21/2017' , endDate: '05/03/2017' }];
-
-function put_id(data) {
-	var index = 0;
-	for (var i = 0; i < data.length; ++i) 
-		data[i].id = "poll-no-" + index++;
-}
 
 //Category Filter
 function add_cat(id) {

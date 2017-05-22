@@ -16,11 +16,7 @@ exports.renderPollsList = function(req, res) {
             console.log(err);
             res.status(500).send();
         } else {
-            res.render('pollsList', function(err, viewString) {
-                polls.view = viewString;
-                console.log(polls);
-                res.json(polls);
-            });
+            res.json(polls);
         }
     });
 };
