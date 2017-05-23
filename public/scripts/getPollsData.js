@@ -50,20 +50,23 @@ function add_cat(id) {
         }
     }
 }
+function checked_poll() {
+    for(var i = 0; i < polls.length; ++i)
+        polls[i].checked = false;
+}
 
 function create_polls_list() {
     var html = '<ol>';
     var p = 0;
     var index = 0;
-    for(var i = 0; i < polls.length; ++i)
-        polls[i].checked = false;
+    checked_poll();
     for (var i = 0; i < polls.length; ++i) {
         for(var j = 0; j < filterList.length; ++j)
             for(var k = 0; k < polls[i].tags.length; ++k)
                 if (polls[i].tags[k] === filterList[j] && !polls[i].checked) {
                     polls[i].checked = true;
                     html += '<li id="'+ polls[i]._id + '"><h4>' + polls[i].subject + '</h4></li>';
-                    html += '<a href="#pollPopup" data-rel="popup" onclick="create_poll('+ "'" + polls[i]._id + "'" +')">';
+                    html += '<a href="#pollPopup" data-rel="popup" onclick="create_poll("'+  polls[i]._id +'")">';
                     html += '<p>' + polls[i].description + '</p>';
                     html += '</a>';
                     pollsListFiltred[p++] = polls[i];
@@ -75,11 +78,9 @@ function create_polls_list() {
 //in popup
 function create_poll(id) {
     var html = '<div>';
-    for(var i = 0; i < pollsListFiltred.length; ++i)
-        pollsListFiltred[i].checked = false;
+    checked_poll();
     for (var i = 0; i < pollsListFiltred.length; ++i) 
-        if (pollsListFiltred[i]._id === id && !pollsListFiltred[i].checked) {
-            pollsListFiltred[i].checked = true;
+        if (pollsListFiltred[i]._id === id) {
             html += '<h4>' + pollsListFiltred[i].subject + '</h4>';         
             html += '<p>' + pollsListFiltred[i].description + '</p>';
             pollsListFiltred[i].endDate = new Date(pollsListFiltred[i].endDate);

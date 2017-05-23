@@ -65,6 +65,7 @@
 				    <li><a href="#myPopup" data-rel="popup" id="logare">Autentificare</a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#">Votarile mele</a></li>
+				    <!-- <li><a href="#">Adauga votare</a></li> -->
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#myPopup2" data-rel="popup">Creare cont</a></li>
 				</ul>
@@ -76,118 +77,35 @@
 					* Descriere: <textarea id="pollDesc" rows="5" cols="50" required></textarea>
 
 					* Data de incheiere a votarii:
-					<input type="date" name="endVote" style="width: 16%;" id="endDate" required>
-					<div class="col-xs-12 category-filter row">
-						* Categorie: 
-						<input type="checkbox" id="DR" name="category" value="Drumuri">
-						<label>Drumuri</label>
-						
-						<input type="checkbox" id="SC" name="category" value="Scoli">
-						<label>Scoli</label>
-						
-						<input type="checkbox" id="SP" name="category" value="Spitale">
-						<label>Spitale</label>
-						
+					<input type="date" name="endVote" id="endDate" required>
+					
+					* Categorie: 
+					<label>
+                        <input type="checkbox" id="DR" name="category" value="Drumuri">
+						Drumuri
+					</label>
+					<label for="SC">
+                        <input type="checkbox" id="SC" name="category" value="Scoli">
+						Scoli
+					</label>
+					<label for="SP">
+                        <input type="checkbox" id="SP" name="category" value="Spitale">
+						Spitale
+					</label>
+					<label for="SV">
 						<input type="checkbox" id="SV" name="category" value="Spatii verzi">
-						<label>Spatii verzi</label>
-					</div>
-					<div class="col-xs-12">
-						<div class="col-xs-3 category-filter row">
-							* Judet:
-		                    <input type="checkbox" id="B" name="judet" value="B">
-							<label>Bucuresti</label>
-		                    <input type="checkbox" id="BH" name="judet" value="BH">
-							<label>Bihor</label>
-							<input type="checkbox" id="AR" name="judet" value="AR">
-							<label>Arad</label>
-							<input type="checkbox" id="TM" name="judet" value="TM">
-							<label>Timisoara</label>
-							<input type="checkbox" id="CS" name="judet" value="CS">
-							<label>Caras-Severin</label>
-							<input type="checkbox" id="MH" name="judet" value="MH">
-							<label>Mehedinti</label>
-							<input type="checkbox" id="GJ" name="judet" value="GJ">
-							<label>Gorj</label>
-							<input type="checkbox" id="HD" name="judet" value="HD">
-							<label>Hunedoara</label>
-							<input type="checkbox" id="AB" name="judet" value="AB">
-							<label>Alba-Iulia</label>
-							<input type="checkbox" id="CJ" name="judet" value="CJ">
-							<label>Cluj-Napoca</label>
-						</div>
-						<div class="col-xs-3 category-filter row">
-							<input type="checkbox" id="SJ" name="judet" value="SJ">
-							<label>Salaj</label>
-							<input type="checkbox" id="SM" name="judet" value="SM">
-							<label>Satu Mare</label>
-							<input type="checkbox" id="MM" name="judet" value="MM">
-							<label>Maramures</label>
-							<input type="checkbox" id="BN" name="judet" value="BN">
-							<label>Bistrita-Nasaud</label>
-							<input type="checkbox" id="MS" name="judet" value="MS">
-							<label>Mures</label>
-							<input type="checkbox" id="SB" name="judet" value="SB">
-							<label>Sibiu</label>
-							<input type="checkbox" id="VL" name="judet" value="VL">
-							<label>Valcea</label>
-							<input type="checkbox" id="DJ" name="judet" value="DJ">
-							<label>Dolj</label>
-							<input type="checkbox" id="OT" name="judet" value="OT">
-							<label>Olt</label>
-							<input type="checkbox" id="TR" name="judet" value="TR">
-							<label>Teleorman</label>
-							<input type="checkbox" id="AG" name="judet" value="AG">
-							<label>Arges</label>
-						</div>
-						<div class="col-xs-3 category-filter row">
-							<input type="checkbox" id="BV" name="judet" value="BV">
-							<label>Brasov</label>
-							<input type="checkbox" id="HR" name="judet" value="HR">
-							<label>Harghita</label>
-							<input type="checkbox" id="SV" name="judet" value="SV">
-							<label>Suceava</label>
-							<input type="checkbox" id="CV" name="judet" value="CV">
-							<label>Covasna</label>
-							<input type="checkbox" id="DB" name="judet" value="DB">
-							<label>Dambovita</label>
-							<input type="checkbox" id="GR" name="judet" value="GR">
-							<label>Giurgiu</label>
-							<input type="checkbox" id="IF" name="judet" value="IF">
-							<label>Ilfov</label>
-							<input type="checkbox" id="PH" name="judet" value="PH">
-							<label>Prahova</label>
-							<input type="checkbox" id="NT" name="judet" value="NT">
-							<label>Neamt</label>
-							<input type="checkbox" id="BC" name="judet" value="BC">
-							<label>Bacau</label>
-							<input type="checkbox" id="VN" name="judet" value="VN">
-							<label>Vrancea</label>
-						</div>
-						<div class="col-xs-3 category-filter row">
-							<input type="checkbox" id="BZ" name="judet" value="BZ">
-							<label>Buzau</label>
-							<input type="checkbox" id="IL" name="judet" value="IL">
-							<label>Ialomita</label>
-							<input type="checkbox" id="CL" name="judet" value="CL">
-							<label>Calarasi</label>
-							<input type="checkbox" id="BR" name="judet" value="BR">
-							<label>Braila</label>
-							<input type="checkbox" id="GL" name="judet" value="GL">
-							<label>Galati</label>
-							<input type="checkbox" id="VS" name="judet" value="VS">
-							<label>Vaslui</label>
-							<input type="checkbox" id="IS" name="judet" value="IS">
-							<label>Iasi</label>
-							<input type="checkbox" id="BT" name="judet" value="BT">
-							<label>Botosani</label>
-							<input type="checkbox" id="TL" name="judet" value="TL">
-							<label>Tulcea</label>
-							<input type="checkbox" id="CT" name="judet" value="CT">
-							<label>Constanta</label>
-						</div>
-							<button id="submitForm" class="btn btn-default pull-right" type="submit" onclick="poll_info()">Adauga Poll</button>
-					</div>
-					</div>		
+						Spatii verzi
+					</label>
+
+					* Judet:
+                    <input type="checkbox" id="firstJud" name="judet" value="B">
+					<label for="firstJud">Bucuresti</label>
+                    <input type="checkbox" id="secondJud" name="judet" value="BH">
+					<label for="secondJud">Bihor</label>
+					
+					<button id="submitForm" class="btn btn-default pull-right" type="submit" onclick="poll_info()">Adauga Poll</button>
+
+						
 				</form>
 			</div>
 		</div>
