@@ -24,11 +24,11 @@ function poll_info()
     var county = [];
 
     $("input:checkbox[name=category]:checked").each(function(){
-    category.push($(this).val());
+        category.push($(this).val());
     });
 
     $("input:checkbox[name=judet]:checked").each(function(){
-    county.push($(this).val());
+        county.push($(this).val());
     });
 
     $.ajax({
@@ -39,12 +39,49 @@ function poll_info()
 		dataType: 'json',
 		async: false,
 		success: function(msg) {
-		alert(msg);
+		    alert(msg);
 		}
 	});
 }
 
 // register
+
+function registerUser() {
+    if(ValidCaptcha()) {
+        var firstName = $('#firstName').val();
+        var lastName = $('#lastName').val();
+        var email = $('#email').val();
+        var cnp = $('#cnp').val();
+        var userName = $('#username1').val();
+        var password = $('#password11').val();
+        var password2 = $('#password22').val();
+        var roleId = $('input[name=inlineButton]:checked').val();
+
+        $.ajax({
+            url: '/register',
+            type: 'POST',
+            data: JSON.stringify({
+                'firstName':    firstName,
+                'lastName':     lastName,
+                'email':        email,
+                'cnp':          cnp,
+                'userName':     userName,
+                'password':     password,
+                'password2':    password2,
+                'roleId':       roleId
+            }),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            async: false,
+            success: function(msg) {
+                alert(msg);
+            }
+        });
+    } else {
+        alert('Invalid captcha!');
+    }
+}
+
 function Captcha(){
 	var alpha = new Array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 	var i;

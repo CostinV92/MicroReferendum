@@ -1,6 +1,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator')
 
 //MongoDB ODM
 var mongoose = require('mongoose');
@@ -19,6 +20,7 @@ app.set('view engine', 'html');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 
 //Static files

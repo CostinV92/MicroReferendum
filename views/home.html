@@ -108,32 +108,34 @@
       		<div id="load-auth">
 				<form>
 					<fieldset id="fileset0">
-						<legend> Introduceti datele de autentificare. </legend>
-							<label>Nume: </label>
-							<input type="text" name="nume" onclick="Captcha();">
+						<legend> Introduceti datele personale</legend>
 							<label>Prenume :</label>
-							<input type="text" name="prenume">
+							<input type="text" name="prenume" id="firstName" required>
+							<label>Nume: </label>
+							<input type="text" name="nume" id="lastName" required>
 							<label>Email :</label>
-							<input type="text" name="email">
+							<input type="text" name="email" id="email" required>
 							<label>Cod numeric personal :</label>
-							<input type="text" name="CNP">
-							<input type="button" value="Continua" onClick="Hide1();">
-							<input type="reset">
-					</fieldset>
-					<fieldset id="field1" data-role="controlgroup" data-type="horizontal" style="display:none">
-						<legend>Alegeti tipul de utilizator:</legend>
-							<label> <input type="radio" name="inlineButton" value="01">Admin </label>
-							<label> <input type="radio" name="inlineButton" value="02">Moderator</label>
-							<label> <input type="radio" name="inlineButton" value="03">Normal </label>
+							<input type="text" name="CNP" id="cnp" required>
+							<label>Username</label>
+							<input type="text" name="username" id="username1" required>
+							<label>Password</label>
+							<input type="password" name="password" id="password11" required>
+							<label>Repeat Password</label>
+							<input type="password" name="password2" id="password22" required>
+							<label>Tipul de utilizator</label>
+							<label> <input type="radio" name="inlineButton" value="1">Admin </label>
+							<label> <input type="radio" name="inlineButton" value="2">Moderator </label>
+							<label> <input type="radio" name="inlineButton" value="3">Normal </label>
 					</fieldset>
 					<br/>
-					<fieldset id="field2" data-role="controlgroup" data-type="horizontal" style="display:none">
-					        <input type="button" id="mainCaptcha" onclick="Captcha();"/> Inserati in casuta textul din staga
+					<fieldset id="field2" data-role="controlgroup" data-type="horizontal">
+					        <input type="button" id="mainCaptcha" onclick="Captcha()"/> Inserati in casuta textul din staga
 							<input type="text" id="txtInput"/>    
 					</fieldset>	
 				    <br/>
-					<fieldset id="field3" data-role="controlgroup" data-type="horizontal" style="display:none">
-						<input type="Submit"  value="Submit" onclick="ValidCaptcha();">
+					<fieldset id="field3" data-role="controlgroup" data-type="horizontal">
+						<input type="Submit"  value="Submit" onclick="registerUser()">
 						<input type="reset">
 					</fieldset>
 				</form>

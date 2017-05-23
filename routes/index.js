@@ -15,6 +15,10 @@ router.get('/addPoll', function(req, res) {
     return mrefctrl.renderAddPoll(req, res);
 });
 
+router.post('/register', function(req, res) {
+    return mrefctrl.registerUser(req, res);
+});
+
 router.post('/login', function(req, res) {
 	return res.send('ok');
 });
