@@ -12,7 +12,6 @@ function login_info() {
   	$('div#myPopup').hide();
 }
 //end Login
-//harta
 
 //poll form data
 function poll_info()
@@ -43,4 +42,3 @@ function poll_info()
 		}
 	});
 }
-
