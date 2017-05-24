@@ -1,13 +1,14 @@
-//Variabile
-
 var currentDate = new Date();
 //login
 function login_info() {
-	var username = $('#username').val();
-	var password = $('#password').val();
-	/*$.post("/login", {username: username, password: password}, function(){alert('daaa, a mers')}).fail(function() {
-    	alert( "error" );
-  	});*/
+    var data = {};
+	data.username = $('#username').val();
+	data.password = $('#password').val();
+	$.post('/login', data).fail(function() {
+    });
+
+    $('#username').val('');
+    $('#password').val('');
   	$("li#logare").html("<a href='#myPopup' data-rel='popup'>Iesire din cont</a>");
   	$('div#myPopup').hide();
 }

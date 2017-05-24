@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mrefctrl = require('../controllers/mref.server.controller.js');
+var model = require('../models/mref.server.model.js');
+var passport = require('passport');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -19,8 +21,8 @@ router.post('/register', function(req, res) {
     return mrefctrl.registerUser(req, res);
 });
 
-router.post('/login', function(req, res) {
-	return res.send('ok');
+router.post('/login', passport.authenticate('local'), function(req, res) {
+    res.send('ok');
 });
 
 router.post('/addPoll', function(req, res) {

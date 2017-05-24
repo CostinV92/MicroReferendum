@@ -1,5 +1,7 @@
-var model = require('../models/mref.server.model.js')
+var model = require('../models/mref.server.model.js');
 var bcrypt = require('bcrypt');
+var passport = require('passport');
+var localStrategy = require('passport-local').Strategy;
 
 exports.renderHome = function(req, res) {
     res.render('home');
@@ -154,5 +156,44 @@ function addUserToDb(req, res) {
 
             newUser.save();
         });
+    });
+}
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  model.User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
+passport.use(new localStrategy(
+    function(username, password, done) {
+        model.User.findOne({ userName: username }, function(err, user) {
+            if (err) {
+                return done(err);
+            }
+
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+
+            validPassword(password, user.password, function(isMatch) {
+                if(isMatch) {
+                    return done(null, user);
+                }
+
+                return done(null, false, { message: 'Incorrect password.' });
+            })
+        });
+    }
+));
+
+function validPassword(password, hash, callback) {
+    bcrypt.compare(password, hash, function(err, isMatch) {
+        if(!err)
+            callback(isMatch);
     });
 }

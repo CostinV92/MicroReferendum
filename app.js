@@ -1,7 +1,13 @@
 var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressValidator = require('express-validator')
+var expressValidator = require('express-validator');
+var passport = require('passport');
+var session = require('express-session')({
+                  secret: 'keyboard cat',
+                  resave: true,
+                  saveUninitialized: true
+                });
 
 //MongoDB ODM
 var mongoose = require('mongoose');
@@ -38,6 +44,15 @@ app.use('/jqjs', express.static(path.join(__dirname, 'node_modules/jquery/dist')
 app.use('/tetjs', express.static(path.join(__dirname, 'node_modules/tether/dist/js')));
 app.use('/tetcss', express.static(path.join(__dirname, 'node_modules/tether/dist/css')));
 //end of static files
+
+//Express session
+app.use(session);
+//end of express session
+
+//Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+// end of passport init
 
 //Routers
 app.use('/', index);
