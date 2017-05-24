@@ -40,22 +40,29 @@
 					* Data de incheiere a votarii:
 					<input type="date" name="endVote" style="width: 16%;" id="endDate" required>
 					<div class="col-xs-12 category-filter row">
-						* Categorie: 
-						<input type="checkbox" id="DR" name="category" value="Drumuri">
-						<label>Drumuri</label>
-						
-						<input type="checkbox" id="SC" name="category" value="Scoli">
-						<label>Scoli</label>
-						
-						<input type="checkbox" id="SP" name="category" value="Spitale">
-						<label>Spitale</label>
-						
-						<input type="checkbox" id="SV" name="category" value="Spatii verzi">
-						<label>Spatii verzi</label>
+					* Categorie: 
+						<input type="checkbox" class="messageCheckbox" name="Drumuri" id="DR" onclick="add_cat(name)">
+						<label>Transporturi</label>
+						<input type="checkbox" class="messageCheckbox" name="Spitale" id="SP" onclick="add_cat(name)">
+						<label>Santate</label>
+						<input type="checkbox" class="messageCheckbox" name="Scoli" id="SC" onclick="add_cat(name)">
+						<label>Educatie</label>
+						<input type="checkbox" class="messageCheckbox" name="Spatii verzi" id="SV" onclick="add_cat(name)">
+						<label>Spatii Verzi</label>
+						<input type="checkbox" class="messageCheckbox" name="Economie" id="EC" onclick="add_cat(name)">
+						<label>Economie</label>
+						<input type="checkbox" class="messageCheckbox" name="Aparare" id="AP" onclick="add_cat(name)">
+						<label>Aparare</label>
+						<input type="checkbox" class="messageCheckbox" name="Agricultura" id="AG" onclick="add_cat(name)">
+						<label>Agricutura</label>
+						<input type="checkbox" class="messageCheckbox" name="Sport" id="SP" onclick="add_cat(name)">
+						<label>Sport</label>
+						<input type="checkbox" class="messageCheckbox" name="Altele" id="AL" onclick="add_cat(name)">
+						<label>Altele</label>
 					</div>
 					<div class="col-xs-12">
 						<div class="col-xs-3 category-filter row">
-							* Judet:
+					* Judet:
 		                    <input type="checkbox" id="B" name="judet" value="B">
 							<label>Bucuresti</label>
 		                    <input type="checkbox" id="BH" name="judet" value="BH">
