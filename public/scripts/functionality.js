@@ -48,34 +48,19 @@ function poll_info()
 
 function registerUser() {
     if(ValidCaptcha()) {
-        var firstName = $('#firstName').val();
-        var lastName = $('#lastName').val();
-        var email = $('#email').val();
-        var cnp = $('#cnp').val();
-        var userName = $('#username1').val();
-        var password = $('#password11').val();
-        var password2 = $('#password22').val();
-        var roleId = $('input[name=inlineButton]:checked').val();
+        var data = {};
+        data.firstName = $('#firstName').val();
+        data.lastName = $('#lastName').val();
+        data.email = $('#email').val();
+        data.cnp = $('#cnp').val();
+        data.userName = $('#username1').val();
+        data.password = $('#password11').val();
+        data.password2 = $('#password22').val();
+        data.roleId = $('input[name=inlineButton]:checked').val();
 
-        $.ajax({
-            url: '/register',
-            type: 'POST',
-            data: JSON.stringify({
-                'firstName':    firstName,
-                'lastName':     lastName,
-                'email':        email,
-                'cnp':          cnp,
-                'userName':     userName,
-                'password':     password,
-                'password2':    password2,
-                'roleId':       roleId
-            }),
-            contentType: 'application/json; charset=utf-8',
-            dataType: 'json',
-            async: false,
-            success: function(msg) {
-                alert(msg);
-            }
+
+        $.post('/register', data).fail(function(){
+            alert('Error');
         });
     } else {
         alert('Invalid captcha!');
