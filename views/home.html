@@ -109,6 +109,7 @@
 				<form>
 					<fieldset id="fileset0">
 						<legend> Introduceti datele personale</legend>
+						<div class="col-xs-6">
 							<label>Prenume :</label>
 							<input type="text" name="prenume" id="firstName" required>
 							<label>Nume: </label>
@@ -119,6 +120,8 @@
 							<input type="text" name="CNP" id="cnp" required>
 							<label>Username</label>
 							<input type="text" name="username" id="username1" required>
+						</div>
+						<div class="col-xs-6">
 							<label>Password</label>
 							<input type="password" name="password" id="password11" required>
 							<label>Repeat Password</label>
@@ -127,17 +130,20 @@
 							<label> <input type="radio" name="inlineButton" value="1">Admin </label>
 							<label> <input type="radio" name="inlineButton" value="2">Moderator </label>
 							<label> <input type="radio" name="inlineButton" value="3">Normal </label>
+						</div>
 					</fieldset>
 					<br/>
-					<fieldset id="field2" data-role="controlgroup" data-type="horizontal">
-					        <input type="button" id="mainCaptcha" onclick="Captcha()"/> Inserati in casuta textul din staga
-							<input type="text" id="txtInput"/>    
-					</fieldset>	
-				    <br/>
-					<fieldset id="field3" data-role="controlgroup" data-type="horizontal">
-						<input type="Submit"  value="Submit" onclick="registerUser()">
-						<input type="reset">
-					</fieldset>
+					<div class="text-center">
+						<fieldset id="field2" data-role="controlgroup" data-type="horizontal">
+						        <input type="button" id="mainCaptcha" onclick="Captcha()"/> Inserati in casuta textul din staga
+								<input type="text" id="txtInput"/>    
+						</fieldset>	
+					    <br/>
+						<fieldset id="field3" data-role="controlgroup" data-type="horizontal">
+							<input type="Submit"  value="Submit" class="btn btn-default" onclick="registerUser()">
+							<input type="reset" class="btn btn-default">
+						</fieldset>
+					</div>
 				</form>
 			</div>
 		</div>
