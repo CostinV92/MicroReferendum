@@ -39,9 +39,8 @@ exports.addPoll = function(req, res) {
     // debug
     console.log(poll);
 
-
     if(validatePoll(poll)) {
-        addPollToDb(poll);
+        addPollToDb(poll, req.user._id);
     } else {
         res.status(400).send();
         console.log('Invalid poll: \n' + JSON.stringify(poll));
@@ -118,7 +117,7 @@ function getPollsByCounty(id, res) {
     });
 }
 
-function addPollToDb(poll, res) {
+function addPollToDb(poll, userId) {
     Poll = new model.Referendum();
     Poll.subject = poll.title;
     Poll.tags = poll.category;
@@ -127,6 +126,7 @@ function addPollToDb(poll, res) {
     Poll.endDate = new Date(poll.endDate);
     Poll.description = poll.desc;
     Poll.public = true;
+    Poll.createdBy = userId;
 
     Poll.save();
 }

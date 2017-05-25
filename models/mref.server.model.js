@@ -20,7 +20,9 @@ var referendumSchema = new Schema({
     endDate:        Date,
     description:    String,
     public:         Boolean,
-    result:         String
+    yesVotes:       {type: Number, default: 0},
+    noVotes:        {type: Number, default: 0},
+    createdBy:      Schema.Types.ObjectId
 });
 
 var categorySchema = new Schema({
