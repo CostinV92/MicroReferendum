@@ -99,11 +99,4 @@ function ValidCaptcha(){
 function removeSpaces(string){
 	return string.split(' ').join('');
 }
-function Hide1() {
-	document.getElementById("field1").style.display = "block";
-	document.getElementById("fileset0").style.display = "none";
-	document.getElementById("field2").style.display = "block";
-	document.getElementById("field3").style.display = "block";
-	Captcha();
-}
 // end register

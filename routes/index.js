@@ -29,4 +29,8 @@ router.post('/addPoll', function(req, res) {
     return mrefctrl.addPoll(req, res);
 });
 
+router.post('/deletePoll', function(req, res) {
+    return mrefctrl.detelePoll(req, res);
+});
+
 module.exports = router;
