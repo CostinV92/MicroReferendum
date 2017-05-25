@@ -5,6 +5,18 @@ $( document ).ready(function() {
     Captcha();
     $.post('/getUser', function(res) {
         currentUser = res;
+        if(currentUser.roleId &&  currentUser.roleId === 2) {
+            $('p#creareCont').remove();
+        }
+        else if((currentUser.roleId && currentUser.roleId === 3) || !currentUser.roleId) {
+            $('.dropdown').hide();
+        }
+        if(currentUser.roleId) {
+            $('.auth').html('<a href="#myPopup" class="pull-right auth"  data-rel="popup">Iesire din cont</a>')
+        }
+        else {
+            $('.auth').html('<a href="#myPopup" class="pull-right auth"  data-rel="popup">Autenfiticare</a>')   
+        }
     });
 });
 
@@ -18,11 +30,9 @@ function login_info() {
 
     $('#username').val('');
     $('#password').val('');
-  	$("li#logare").html("<a href='#myPopup' data-rel='popup'>Iesire din cont</a>");
-  	$('div#myPopup').hide();
+  	location.reload();
 }
 //end Login
-//harta
 
 //poll form data
 function poll_info()

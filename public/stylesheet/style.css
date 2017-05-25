@@ -60,7 +60,11 @@ area:hover {
 .category-filter {
 	margin-top: 30px;
 }
-.category-filter input{
+.category-filter input[type="radio"]{
+	width: 15px;
+	margin-top: 0px !important;
+}
+.category-filter input[type="checkbox"]{
 	width: 15px;
 	margin-top: 0px !important;
 }

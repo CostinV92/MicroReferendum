@@ -1,7 +1,7 @@
 var polls, filterList = [], idx = 0, pollsListFiltred = [];
 var currentDate = new Date();
 $.draw ;
-var judetCurent ;
+var currentUser;
 
 $( document ).ready(function() {
 
@@ -9,9 +9,11 @@ $( document ).ready(function() {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
         return results[1] || 0;
     }
+    $.post('/getUser', function(res) {
+        currentUser = res;
+    });
 
     function filter_by_county(id) {
-        judetCurent = id;
         $.get('/pollsList?id=' + id)
         .done(function(data) {
             $.draw(data);
@@ -81,7 +83,7 @@ function create_polls_list() {
 //in popup
 
 function create_poll(id) {
-    if(false) {//adin 
+    if(currentUser.roleId && currentUser.roleId === 1) {//adim
         for( var i = 0; polls.length; ++i){
             var time = new Date(polls[i].endDate);
             if(polls[i]._id === id){ 
@@ -235,10 +237,14 @@ function create_poll(id) {
                 pollsListFiltred[i].endDate = new Date(pollsListFiltred[i].endDate);
                 if (pollsListFiltred[i].endDate >= currentDate) {               
                     html += '<p style="color:red;">Mai sunt <b>' + from_milis_to_days(pollsListFiltred[i].endDate - currentDate) + '</b> zile pana la inchiderea votului.</p>';
-                    html += '<p>Sunteti de acord?</p>';
-                    html += '<div id="votes">';
-                    html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">DA</button>';
-                    html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">NU</button>';
+                    if(!currentUser.roleId)
+                        html += 'Trebuie sa fii autentificat pentru a putea vota!';
+                    else {
+                        html += '<p>Sunteti de acord?</p>';
+                        html += '<div id="votes">';
+                        html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">DA</button>';
+                        html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">NU</button>';
+                    }
                     html += '</div>';
                 } else { 
                     html += '<p>Votul s-a incheiat.</p>';
@@ -263,7 +269,7 @@ function submit_vote(id, pollId) {
         vot = 1;
     else
         vot = 0;
-    $("div#vote").html('<p class="text-center"><b>Va multumim!</b></p>');
+    $("div#votes").html('<p class="text-center"><b>Va multumim!</b></p>');
     $.post('vote', { poll_id: pollId , vote: vot }, function(vot){
         console.log('Vot trimis cu succes.');
     });
