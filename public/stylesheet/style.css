@@ -9,7 +9,12 @@
     background: #e9e9ea;
 
 }
-
+.auth{
+	color: #D40000 !important;
+	text-decoration: none !important;
+	padding-top: 10px;
+	font-size: 17px;
+}
 #password {
 	-webkit-text-security: circle;
 }
@@ -104,11 +109,4 @@ area:hover {
 .no-pad {
 	padding-left: 0px !important;
 	padding-right: 0px !important;
-}
-
-input[type=radio]:not(old){
-  width   : 28px;
-  margin  : 0;
-  padding : 0;
-  opacity : 0;
 }

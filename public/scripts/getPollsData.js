@@ -1,5 +1,6 @@
 var polls, filterList = [], idx = 0, pollsListFiltred = [];
 var currentDate = new Date();
+$.draw ;
 
 $( document ).ready(function() {
 
@@ -11,14 +12,14 @@ $( document ).ready(function() {
     function filter_by_county(id) {
         $.get('/pollsList?id=' + id)
         .done(function(data) {
-            draw_data(data);
+            $.draw(data);
         })
         .fail(function() {
             alert("error");
         });
     };
 
-    function draw_data(data) {
+    $.draw =function(data) {
         polls = data;
         var html = '<ol>';
         var p = 0;
@@ -50,6 +51,8 @@ function add_cat(id) {
             }
         }
     }
+    if(filterList.length === 0)
+        $.draw(polls);
 }
 
 function create_polls_list() {
@@ -71,6 +74,7 @@ function create_polls_list() {
     }
     html += '</ol>';
     $("div#poll-list").html(html);
+    
 }
 //in popup
 function create_poll(id) {

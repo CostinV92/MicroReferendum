@@ -16,6 +16,7 @@
 	<div id="addPollDiv">
 		<div class="bottom col-xs-12">
 			<a href="/"><img class="pull-left" id="logo" src="/stylesheet/Imgs/logo.jpg"/></a>
+			<a href="#myPopup" class="pull-right auth"  data-rel="popup">Autentificare</a>
 		</div>
 		<div class="container">
 		<!-- Main Dropdown Menu -->
@@ -24,8 +25,6 @@
 				    <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
 				</button>
 				<ul class="dropdown-menu" id="menu1">
-				    <li><a href="#myPopup" data-rel="popup" id="logare">Autentificare</a></li>
-				    <li role="separator" class="divider"></li>
 				    <li><a href="#">Votarile mele</a></li>
 				    <li role="separator" class="divider"></li>
 				    <li><a href="#myPopup2" data-rel="popup">Creare cont</a></li>
@@ -33,12 +32,15 @@
 			</div>	
 			<div id="pollFormWrappper" class="col-xs-offset-1 col-xs-10 col-xs-offset-1">
 				<form id="pollForm">
+					<div class="col-xs-6 no-pad">
 					* Titlu: <input type="text" id="pollTitle" required>
-					
+					</div>
+					<div class="col-xs-offset-1 col-xs-5 no-pad">
+					* Data de incheiere a votarii:
+						<input type="date" name="endVote" style="line-height: 10px !important;" id="endDate" required>
+					</div>
 					* Descriere: <textarea id="pollDesc" rows="5" cols="50" required></textarea>
 
-					* Data de incheiere a votarii:
-					<input type="date" name="endVote" style="width: 16%;" id="endDate" required>
 					<div class="col-xs-12 category-filter row">
 					* Categorie: 
 						<input type="checkbox" class="messageCheckbox" name="Drumuri" id="DR" onclick="add_cat(name)">
@@ -185,27 +187,27 @@
 				<form>
 					<fieldset id="fileset0">
 						<legend> Introduceti datele personale</legend>
-						<div class="col-xs-6">
-							<label>Prenume :</label>
+						<div class="col-xs-6 category-filter">
+							<label>Prenume</label>
 							<input type="text" name="prenume" id="firstName" required>
-							<label>Nume: </label>
+							<label>Nume</label>
 							<input type="text" name="nume" id="lastName" required>
-							<label>Email :</label>
+							<label>Email</label>
 							<input type="text" name="email" id="email" required>
-							<label>Cod numeric personal :</label>
+							<label>Cod numeric personal</label>
 							<input type="text" name="CNP" id="cnp" required>
-							<label>Username</label>
-							<input type="text" name="username" id="username1" required>
 						</div>
-						<div class="col-xs-6">
-							<label>Password</label>
+						<div class="col-xs-6 category-filter">
+							<label>Nume de utilizator</label>
+							<input type="text" name="username" id="username1" required>
+							<label>Parola</label>
 							<input type="password" name="password" id="password11" required>
-							<label>Repeat Password</label>
+							<label>Repetati parola</label>
 							<input type="password" name="password2" id="password22" required>
 							<label>Tipul de utilizator</label>
-							<label> <input type="radio" name="inlineButton" value="1">Admin </label>
-							<label> <input type="radio" name="inlineButton" value="2">Moderator </label>
-							<label> <input type="radio" name="inlineButton" value="3">Normal </label>
+							<input type="radio" name="inlineButton" value="1"><label>Admin </label>
+							<input type="radio" name="inlineButton" value="2"><label>Moderator </label>
+							<input type="radio" name="inlineButton" value="3"><label>Normal </label>
 						</div>
 					</fieldset>
 					<br/>
