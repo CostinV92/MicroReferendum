@@ -227,6 +227,8 @@ function create_poll(id) {
     }
     else {
         var html = '<div>';
+        var counter = 0;
+        var checked = 0;
         for(var i = 0; i < pollsListFiltred.length; ++i)
             pollsListFiltred[i].checked = false;
         for (var i = 0; i < pollsListFiltred.length; ++i) 
@@ -237,14 +239,21 @@ function create_poll(id) {
                 pollsListFiltred[i].endDate = new Date(pollsListFiltred[i].endDate);
                 if (pollsListFiltred[i].endDate >= currentDate) {               
                     html += '<p style="color:red;">Mai sunt <b>' + from_milis_to_days(pollsListFiltred[i].endDate - currentDate) + '</b> zile pana la inchiderea votului.</p>';
-                    if(!currentUser.roleId)
-                        html += 'Trebuie sa fii autentificat pentru a putea vota!';
-                    else {
-                        html += '<p>Sunteti de acord?</p>';
-                        html += '<div id="votes">';
-                        html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">DA</button>';
-                        html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">NU</button>';
-                    }
+                        if(!currentUser.roleId)
+                            html += 'Trebuie sa fii autentificat pentru a putea vota!';
+                        else
+                            for(var l = 0; l < currentUser.votedOn.length; ++l)
+                                if(currentUser.votedOn[l] === pollsListFiltred[i]._id) {
+                                    html += 'Deja ati votat. Va multumim!';
+                                    counter++;
+                                }
+                            if(counter === 0 && checked == 0){
+                                checked ++;
+                                html += '<p>Sunteti de acord?</p>';
+                                html += '<div id="votes">';
+                                html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">DA</button>';
+                                html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">NU</button>';
+                            }
                     html += '</div>';
                 } else { 
                     html += '<p>Votul s-a incheiat.</p>';
