@@ -50,6 +50,13 @@ exports.addPoll = function(req, res) {
     res.send('ok');
 };
 
+exports.deletePoll = function(req, res) {
+    model.Referendum.remove({ _id: req._id }, function(err) {
+        if(err)
+            console.log(err);
+    });
+}
+
 exports.registerUser = function(req, res) {
     if(validateUser(req)) {
         res.render('home');
