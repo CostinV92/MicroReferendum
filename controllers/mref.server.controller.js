@@ -58,14 +58,30 @@ exports.deletePoll = function(req, res) {
 }
 
 exports.vote = function(req, res) {
-    model.Referendum.findById({ _id: req.body.poll_id }, function(err, poll) {
-        if(!err) {
-            if(req.body.vote == '1')
-                poll.yesVotes++;
-            else
-                poll.noVotes++;
+    var user = req.user;
+    var pollId = req.body.poll_id;
 
-            poll.save();
+    model.User.findById({ _id: user._id }, function(err, user) {
+        if(!err) {
+            // check if allready voted
+            for(it = 0; it < user.votedOn.length; it++) {
+                if (user.votedOn[it] == pollId)
+                    return;
+            }
+
+            model.Referendum.findById({ _id: pollId }, function(err, poll) {
+                if(!err) {
+                    if(req.body.vote == '1')
+                        poll.yesVotes++;
+                    else
+                        poll.noVotes++;
+
+                    poll.save();
+                }
+            });
+
+            user.votedOn.push(pollId);
+            user.save();
         }
     });
 

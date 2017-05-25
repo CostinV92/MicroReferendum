@@ -10,7 +10,8 @@ var userSchema = new Schema({
     password:       String,
     roleId:         Number,
     publicKey:      String,
-    referendums:    [Schema.Types.ObjectId]
+    referendums:    [Schema.Types.ObjectId],
+    votedOn:        [Schema.Types.ObjectId]
 });
 
 var referendumSchema = new Schema({
