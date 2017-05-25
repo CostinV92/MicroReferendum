@@ -51,23 +51,41 @@ exports.addPoll = function(req, res) {
 };
 
 exports.deletePoll = function(req, res) {
-    model.Referendum.remove({ _id: req._id }, function(err) {
+    model.Referendum.remove({ _id: req.body._id }, function(err) {
         if(err)
             console.log(err);
     });
 }
 
 exports.vote = function(req, res) {
-    model.Referendum.findById({ _id: req._id }, function(err, poll) {
-        if(!err) {
-            if(req.vote)
-                poll.yesVotes++;
-            else
-                poll.noVotes++;
+    var user = req.user;
+    var pollId = req.body.poll_id;
 
-            poll.save();
+    model.User.findById({ _id: user._id }, function(err, user) {
+        if(!err) {
+            // check if allready voted
+            for(it = 0; it < user.votedOn.length; it++) {
+                if (user.votedOn[it] == pollId)
+                    return;
+            }
+
+            model.Referendum.findById({ _id: pollId }, function(err, poll) {
+                if(!err) {
+                    if(req.body.vote == '1')
+                        poll.yesVotes++;
+                    else
+                        poll.noVotes++;
+
+                    poll.save();
+                }
+            });
+
+            user.votedOn.push(pollId);
+            user.save();
         }
     });
+
+    res.status(200).send();
 }
 
 exports.registerUser = function(req, res) {
