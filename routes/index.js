@@ -34,7 +34,7 @@ router.post('/vote', function(req, res) {
     if(!req.isAuthenticated()) {
         res.status(401).send();
     } else {
-        return mrefctrl.vote(res, req);
+        return mrefctrl.vote(req, res);
     }
 });
 

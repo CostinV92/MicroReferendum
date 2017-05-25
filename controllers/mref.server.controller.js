@@ -51,16 +51,16 @@ exports.addPoll = function(req, res) {
 };
 
 exports.deletePoll = function(req, res) {
-    model.Referendum.remove({ _id: req._id }, function(err) {
+    model.Referendum.remove({ _id: req.body._id }, function(err) {
         if(err)
             console.log(err);
     });
 }
 
 exports.vote = function(req, res) {
-    model.Referendum.findById({ _id: req._id }, function(err, poll) {
+    model.Referendum.findById({ _id: req.body.poll_id }, function(err, poll) {
         if(!err) {
-            if(req.vote)
+            if(req.body.vote == '1')
                 poll.yesVotes++;
             else
                 poll.noVotes++;
@@ -68,6 +68,8 @@ exports.vote = function(req, res) {
             poll.save();
         }
     });
+
+    res.status(200).send();
 }
 
 exports.registerUser = function(req, res) {
