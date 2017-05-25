@@ -9,7 +9,8 @@ var userSchema = new Schema({
     userName:       String,
     password:       String,
     roleId:         Number,
-    publicKey:      String   
+    publicKey:      String,
+    referendums:    [Schema.Types.ObjectId]
 });
 
 var referendumSchema = new Schema({
@@ -20,7 +21,9 @@ var referendumSchema = new Schema({
     endDate:        Date,
     description:    String,
     public:         Boolean,
-    result:         String
+    yesVotes:       {type: Number, default: 0},
+    noVotes:        {type: Number, default: 0},
+    createdBy:      Schema.Types.ObjectId
 });
 
 var categorySchema = new Schema({

@@ -39,9 +39,8 @@ exports.addPoll = function(req, res) {
     // debug
     console.log(poll);
 
-
     if(validatePoll(poll)) {
-        addPollToDb(poll);
+        addPollToDb(poll, req.user._id);
     } else {
         res.status(400).send();
         console.log('Invalid poll: \n' + JSON.stringify(poll));
@@ -51,12 +50,29 @@ exports.addPoll = function(req, res) {
     res.send('ok');
 };
 
+exports.deletePoll = function(req, res) {
+    model.Referendum.remove({ _id: req._id }, function(err) {
+        if(err)
+            console.log(err);
+    });
+}
+
 exports.registerUser = function(req, res) {
     if(validateUser(req)) {
         res.render('home');
     } else {
         res.status(400).send();
         console.log('Tried to register invalid user!');
+    }
+}
+
+exports.getUser = function(req, res) {
+    if(req.isAuthenticated()) {
+        model.User.findById(req.user._id, function(err, user) {
+            res.json(user);
+        });
+    } else {
+        res.send('undefined');
     }
 }
 
@@ -118,7 +134,7 @@ function getPollsByCounty(id, res) {
     });
 }
 
-function addPollToDb(poll, res) {
+function addPollToDb(poll, userId) {
     Poll = new model.Referendum();
     Poll.subject = poll.title;
     Poll.tags = poll.category;
@@ -127,8 +143,18 @@ function addPollToDb(poll, res) {
     Poll.endDate = new Date(poll.endDate);
     Poll.description = poll.desc;
     Poll.public = true;
+    Poll.createdBy = userId;
 
-    Poll.save();
+    Poll.save(function(err, poll){
+        if(!err)
+            model.User.findById(userId, function(err, user){
+                if(!err) {
+                    user.referendums.push(poll._id);
+                    user.save();
+                }
+
+            });
+    });
 }
 
 function addUserToDb(req, res) {

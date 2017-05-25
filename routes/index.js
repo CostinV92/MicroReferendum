@@ -29,8 +29,18 @@ router.post('/addPoll', function(req, res) {
     return mrefctrl.addPoll(req, res);
 });
 
-router.post('/deletePoll', function(req, res) {
-    return mrefctrl.detelePoll(req, res);
+router.post('/getUser', function(req, res) {
+    return mrefctrl.getUser(req, res);
 });
+
+router.post('/deletePoll', function(req, res) {
+    if(!req.isAuthenticated()) {
+        res.status(401).send();
+    } else if(req.user.roleId != 1) {
+        res.status(403).send();
+    }
+
+    return mrefctrl.deletePoll(req, res);
+})
 
 module.exports = router;
