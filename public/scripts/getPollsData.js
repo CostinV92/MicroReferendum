@@ -102,23 +102,23 @@ function create_poll(id) {
                 for(var k = 0; k < polls[i].tags.length; ++k)
                     html +=  polls[i].tags[k] + ' ';
                 html += '<br>Categoria noua/Categoriile noi: <br>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="DR" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Drumuri" name="category" id="DR" onclick="add_cat(name)" disabled>' +
                     '<label>Transporturi</label>'+
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="SP" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spitale" name="category" id="SP" onclick="add_cat(name)" disabled>' +
                     '<label>Santate</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="SC" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Scoli" name="category" id="SC" onclick="add_cat(name)" disabled>' +
                     '<label>Educatie</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="AP" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Aparare" name="category" id="AP" onclick="add_cat(name)" disabled>' +
                     '<label>Aparare</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="AG" onclick="add_cat(name)" disabled> ' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Agricultura" name="category" id="AG" onclick="add_cat(name)" disabled> ' +
                     '<label>Agricutura</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="SP" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Sport" name="category" id="SP" onclick="add_cat(name)" disabled>' +
                     '<label>Sport</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="SV" onclick="add_cat(name)" disabled' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled' +
                     '<label>Spatii Verzi</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="EC" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Economie" name="category" id="EC" onclick="add_cat(name)" disabled>' +
                     '<label>Economie</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" name="category" id="AL" onclick="add_cat(name)" disabled>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Altele" name="category" id="AL" onclick="add_cat(name)" disabled>' +
                     '<label>Altele</label>' +
                 '</div>' +
                 '<div class="/*col-xs-12*/">' +
