@@ -128,7 +128,16 @@ function addPollToDb(poll, userId) {
     Poll.public = true;
     Poll.createdBy = userId;
 
-    Poll.save();
+    Poll.save(function(err, poll){
+        if(!err)
+            model.User.findById(userId, function(err, user){
+                if(!err) {
+                    user.referendums.push(poll._id);
+                    user.save();
+                }
+
+            });
+    });
 }
 
 function addUserToDb(req, res) {
