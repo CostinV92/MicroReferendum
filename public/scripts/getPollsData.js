@@ -11,10 +11,10 @@ $( document ).ready(function() {
     }
 
     function filter_by_county(id) {
+        judetCurent = id;
         $.get('/pollsList?id=' + id)
         .done(function(data) {
             $.draw(data);
-            judetCurent = id;
         })
         .fail(function() {
             alert("error");
@@ -81,7 +81,7 @@ function create_polls_list() {
 //in popup
 
 function create_poll(id) {
-    if(true) {//adin 
+    if(false) {//adin 
         for( var i = 0; polls.length; ++i){
             var time = new Date(polls[i].endDate);
             if(polls[i]._id === id){ 
@@ -236,9 +236,9 @@ function create_poll(id) {
                 if (pollsListFiltred[i].endDate >= currentDate) {               
                     html += '<p style="color:red;">Mai sunt <b>' + from_milis_to_days(pollsListFiltred[i].endDate - currentDate) + '</b> zile pana la inchiderea votului.</p>';
                     html += '<p>Sunteti de acord?</p>';
-                    html += '<div id="vote">';
-                    html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id)">DA</button>';
-                    html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id)">NU</button>';
+                    html += '<div id="votes">';
+                    html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">DA</button>';
+                    html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">NU</button>';
                     html += '</div>';
                 } else { 
                     html += '<p>Votul s-a incheiat.</p>';
@@ -257,14 +257,14 @@ function from_milis_to_days(date) {
     return days;
 }
 
-function submit_vote(id) {
+function submit_vote(id, pollId) {
     var vot;
     if (id === 'da')
-        vot = 0;
-    else
         vot = 1;
+    else
+        vot = 0;
     $("div#vote").html('<p class="text-center"><b>Va multumim!</b></p>');
-    $.post('votes/add', function(vot){
+    $.post('vote', { poll_id: pollId , vote: vot }, function(vot){
         console.log('Vot trimis cu succes.');
     });
 }
