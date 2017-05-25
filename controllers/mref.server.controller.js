@@ -62,11 +62,10 @@ exports.registerUser = function(req, res) {
 exports.getUser = function(req, res) {
     if(req.isAuthenticated()) {
         model.User.findById(req.user._id, function(err, user) {
-            res.user = user;
-            res.redirect(req.callback);
+            res.json(user);
         });
     } else {
-        res.redirect(req.callback);
+        res.send('undefined');
     }
 }
 
