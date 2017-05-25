@@ -241,7 +241,7 @@ function create_poll(id) {
                     html += '<p style="color:red;">Mai sunt <b>' + from_milis_to_days(pollsListFiltred[i].endDate - currentDate) + '</b> zile pana la inchiderea votului.</p>';
                         if(!currentUser.roleId)
                             html += 'Trebuie sa fii autentificat pentru a putea vota!';
-                        else
+                        else {
                             for(var l = 0; l < currentUser.votedOn.length; ++l)
                                 if(currentUser.votedOn[l] === pollsListFiltred[i]._id) {
                                     html += 'Deja ati votat. Va multumim!';
@@ -254,6 +254,7 @@ function create_poll(id) {
                                 html += '<button id="da" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">DA</button>';
                                 html += '<button id="nu" class="btn btn-default" style="width:50%" onclick="submit_vote(id,'+"'"+pollsListFiltred[i]._id+"'"+')">NU</button>';
                             }
+                        }
                     html += '</div>';
                 } else { 
                     html += '<p>Votul s-a incheiat.</p>';
