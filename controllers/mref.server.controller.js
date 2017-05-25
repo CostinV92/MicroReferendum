@@ -57,6 +57,19 @@ exports.deletePoll = function(req, res) {
     });
 }
 
+exports.vote = function(req, res) {
+    model.Referendum.findById({ _id: req._id }, function(err, poll) {
+        if(!err) {
+            if(req.vote)
+                poll.yesVotes++;
+            else
+                poll.noVotes++;
+
+            poll.save();
+        }
+    });
+}
+
 exports.registerUser = function(req, res) {
     if(validateUser(req)) {
         res.render('home');
