@@ -29,4 +29,8 @@ router.post('/addPoll', function(req, res) {
     return mrefctrl.addPoll(req, res);
 });
 
+router.get('/getUser', function(req, res) {
+    return mrefctrl.getUser(req, res);
+});
+
 module.exports = router;
