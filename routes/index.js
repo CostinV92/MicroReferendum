@@ -30,7 +30,7 @@ router.post('/addPoll', function(req, res) {
         return mrefctrl.addPoll(req, res);
 });
 
-router.post('/vote' function(req, res) {
+router.post('/vote', function(req, res) {
     if(!req.isAuthenticated()) {
         res.status(401).send();
     } else {
