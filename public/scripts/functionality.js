@@ -13,10 +13,10 @@ $( document ).ready(function() {
             $('.dropdown').hide();
         }
         if(currentUser.roleId) {
-            $('.auth').html('<a href="/" class="pull-right auth"  data-rel="popup" onclick="logout()">Iesire din cont</a>')
+            $('.auth').html('<a href="/" class="pull-right auth"  data-rel="popup" onclick="logout()">Iesire din cont</a>');
         }
         else {
-            $('.auth').html('<a href="#myPopup" class="pull-right auth"  data-rel="popup">Autenfiticare</a>')   
+            $('.auth').html('<a href="#myPopup" class="pull-right auth"  data-rel="popup">Autenfiticare</a>');
         }
     });
 });
@@ -26,19 +26,18 @@ function login_info() {
     var data = {};
 	data.username = $('#username').val();
 	data.password = $('#password').val();
-	$.post('/login', data).fail(function() {
-        $('.auth').html('<a href="/" class="pull-right auth"  data-rel="popup" onclick="logout()">Iesire din cont</a>')
+	$.post('/login', data, function() {
+        location.reload();
     });
 
     $('#username').val('');
     $('#password').val('');
-  	location.reload();
 }
 //end Login
 
 function logout() {
     $.get('/logout', function(res) {
-        $('.auth').html('<a href="#myPopup" class="pull-right auth"  data-rel="popup">Autenfiticare</a>')
+        location.reload();
     });
 }
 
