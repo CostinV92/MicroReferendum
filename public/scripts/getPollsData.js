@@ -89,12 +89,12 @@ function create_poll(id) {
             if(polls[i]._id === id){ 
              var html = '<div style="background:#F9F9F9; color:black; padding:20px;"><form id="adminPoll">'+
                 '<div class="/*col-xs-6 */no-pad">' +
-                'Titlu: <input type="text" id="pollTitle" value='+ polls[i].subject  +' disabled>'+
+                'Titlu: <input type="text" id="pollTitle" value="'+ polls[i].subject  +'" disabled>'+
                 '</div>'+
                 '<div class="/*col-xs-of*/fset-1 /*col-xs-5"*/ style="padding-left: 0px !important;padding-right: 0px !important;">'+
                 'Data de incheiere a votarii:  '+ time.getDate() +'.0' +time.getMonth()+ '.' + time.getFullYear() +
                 '<br>Alegeti o data noua  ' +
-                    '<input type="date" name="endVote" style="line-height: 10px !important;" id="endDate" disabled>'+
+                    '<input type="date" name="endVote" style="line-height: 10px !important;" id="endDate" value="' + time.getFullYear() + '-0' +time.getMonth()+ '-' + time.getDate() +'" disabled>'+
                 '</div>'+
                 '<span>Descriere:  <span> <textarea id="pollDesc" rows="5" cols="50" disabled>' + polls[i].description + '</textarea>'+
                 '<div class="/*col-xs-12*/ row" style="margin-top: 30px;">'+
@@ -224,6 +224,7 @@ function create_poll(id) {
             }
         }
         $("div#poll-vote").html(html);
+        defaultVals();
     }
     else {
         var html = '<div>';
@@ -304,4 +305,25 @@ function deletePoll(id) {
 
 function closePoll() {
     $('div#poll-vote').hide();
+}
+
+function defaultVals() {
+    var inputs, index;
+    inputs = document.getElementsByTagName('input');
+    for (index = 0; index < inputs.length; ++index) {
+        console.log(input[i]);/*
+         for(var k = 0; k < polls.length; ++k) {
+            for(var i = 0; i < polls[k].tags.length; ++i)
+*/
+                /*if($(input[i].val() === polls[i].tags[i])
+                    console.log('da');*/
+                 /*   $("input[type='checkbox']").attr(checked);
+            for(var j = 0; j < polls[k].region.length ; ++j)
+                if($("input[type='checkbox']").val() === polls[i].tags[j])
+                    $("input[type='checkbox']").attr(checked);*/
+        
+
+
+    // deal with inputs[index] element.
+    }
 }
