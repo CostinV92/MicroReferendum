@@ -38,6 +38,13 @@ router.post('/vote', function(req, res) {
     }
 });
 
+router.get('/myPolls', function(req, res) {
+    if(!req.isAuthenticated())
+        res.status(401).send();
+    else
+        return mrefctrl.myVotes(req, res);
+});
+
 router.post('/register', function(req, res) {
     return mrefctrl.registerUser(req, res);
 });
