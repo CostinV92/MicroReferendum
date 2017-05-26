@@ -22,12 +22,30 @@ router.get('/addPoll', function(req, res) {
 });
 
 router.post('/addPoll', function(req, res) {
+    if(!req.isAuthenticated())
+        res.status(401).send();
+    else if(req.user.roleId == 3) 
+        res.status(403).send();
+    else
+        return mrefctrl.addPoll(req, res);
+});
+
+router.post('/editPoll', function(req, res) {
+    if(!req.isAuthenticated())
+        res.status(401).send();
+    else if(req.user.roleId != 1)
+        rese.status(403).send();
+    else
+        return mrefctrl.editPoll(req, res);
+});
+
+router.post('/deletePoll', function(req, res) {
     if(!req.isAuthenticated()) {
         res.status(401).send();
-    } else if(req.user.roleId == 3) {
+    } else if(req.user.roleId != 1) {
         res.status(403).send();
     } else
-        return mrefctrl.addPoll(req, res);
+        return mrefctrl.deletePoll(req, res);
 });
 
 router.post('/vote', function(req, res) {
@@ -68,14 +86,5 @@ router.get('/logout', function(req, res) {
 router.post('/getUser', function(req, res) {
     return mrefctrl.getUser(req, res);
 });
-
-router.post('/deletePoll', function(req, res) {
-    if(!req.isAuthenticated()) {
-        res.status(401).send();
-    } else if(req.user.roleId != 1) {
-        res.status(403).send();
-    } else
-        return mrefctrl.deletePoll(req, res);
-})
 
 module.exports = router;

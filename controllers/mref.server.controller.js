@@ -5,7 +5,7 @@ var localStrategy = require('passport-local').Strategy;
 
 exports.renderHome = function(req, res) {
     res.render('home');
-};
+}
 
 exports.renderPollsList = function(req, res) {
     var region = req.query.id;
@@ -22,11 +22,11 @@ exports.renderPollsList = function(req, res) {
             res.json(polls);
         }
     });
-};
+}
 
 exports.renderAddPoll = function(req, res) {
     res.render('addPoll');
-};
+}
 
 exports.addPoll = function(req, res) {
     var poll = {};
@@ -48,7 +48,18 @@ exports.addPoll = function(req, res) {
     }
 
     res.send('ok');
-};
+}
+
+exports.editPoll = function(req, res) {
+    var newPoll = req.body.poll;
+
+    model.Referendum.findById(newPoll._id, function(err, poll) {
+        if(!err) {
+            poll = newPoll;
+            poll.save();
+        }
+    });
+}
 
 exports.deletePoll = function(req, res) {
     model.Referendum.remove({ _id: req.body._id }, function(err) {
