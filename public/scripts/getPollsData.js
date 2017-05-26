@@ -259,13 +259,20 @@ function create_poll(id) {
                     html += '</div>';
                 } else { 
                     html += '<p>Votul s-a incheiat.</p>';
-                    html += '<span>Rezultatul votului este:' + 'DA -' + polls[i].yesVotes + 'NU-' + polls[i].noVotes + '</span><br>';
+                    html += '<span style="color:red;">Rezultatul votului este: ' + percent(polls[i]) + '</span><br>';
                 }
                 
             }
         $("div#poll-vote").html(html);
     }
     
+}
+
+function percent(poll) {
+    var total = poll.yesVotes + poll.noVotes;
+    var yes = (( poll.yesVotes * 100 )/total).toFixed(2);
+    var no = (100 - yes).toFixed(2);
+    return yes + '% <b>DA</b> ' + no + '% <b>NU</b> ';
 }
 
 function from_milis_to_days(date) {
