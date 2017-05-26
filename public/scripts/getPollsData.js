@@ -217,7 +217,7 @@ function create_poll(id) {
                     '</div>' +
                 '</div>' +
                 '<div id="butoane-CRUD" style="float:right;margin-bottom:50px;">' +
-                    '<button onclick="editPoll()">Editeaza</button><!-- devine salveaza cu onclick="poll_info()"-->' +
+                    '<button onclick="editPoll(' + i + ')">Editeaza</button><!-- devine salveaza cu onclick="poll_info()"-->' +
                     '<button onclick="deletePoll('+ polls[i]._id +'">Sterge</button><!-- devine renunta si inchide popup-ul-->' +
                 '</div>' +
             '</form></div>'
@@ -294,38 +294,31 @@ function submit_vote(id, pollId) {
     });
 }
 
-function editPoll() {
+function editPoll(pollIt) {
     event.preventDefault();
     $('input').removeAttr("disabled"); // Element(s) are now enabled.
     $('textarea').removeAttr("disabled");
-    $('#butoane-CRUD').html("<button onclick='updatePoll()'>Salveaza</button><button onclick='closePoll()'>Renunta</button>");
+    $('#butoane-CRUD').html('<button onclick="updatePoll(' + pollIt + ')">Salveaza</button><button onclick="closePoll()">Renunta</button>');
 }
 
-function updatePoll() {
-    var title = $('#pollTitle').val();
-    var desc = $('#pollDesc').val();
-    var endDate = $('#endDate').val();
+function updatePoll(pollIt) {
+    var poll = polls[pollIt];
+    poll.title = $('#pollTitle').val();
+    poll.desc = $('#pollDesc').val();
+    poll.endDate = $('#endDate').val();
+
     var category = [];
     var county = [];
 
     $("input:checkbox[name=category]:checked").each(function(){
-        category.push($(this).val());
+        poll.tags.push($(this).val());
     });
 
     $("input:checkbox[name=judet]:checked").each(function(){
-        county.push($(this).val());
+        poll.region.push($(this).val());
     });
-
-    $.ajax({
-        url: '/editPoll',
-        type: 'POST',
-        data: JSON.stringify({'title': title, 'desc': desc, 'endDate':endDate, 'category':category, county:county}),
-        contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
-        async: false,
-        success: function(msg) {
-            alert(msg);
-        }
+    $.post('/editPoll', poll, function(){
+        location.reload();
     });
 }
 

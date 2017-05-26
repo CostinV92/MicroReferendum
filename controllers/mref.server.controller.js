@@ -51,12 +51,19 @@ exports.addPoll = function(req, res) {
 }
 
 exports.editPoll = function(req, res) {
-    var newPoll = req.body.poll;
-
-    model.Referendum.findById(newPoll._id, function(err, poll) {
+    var poll = req.body;
+    model.Referendum.findById(poll._id, function(err, Poll) {
         if(!err) {
-            poll = newPoll;
-            poll.save();
+            Poll.subject = poll.title;
+            Poll.tags = poll['tags[]'];
+            Poll.region = poll['region[]'];
+            Poll.endDate = new Date(poll.endDate);
+            Poll.description = poll.desc;
+            Poll.public = true;
+            Poll.yesVotes = poll.yesVotes;
+            Poll.noVotes = poll.noVotes;
+
+            Poll.save();
         }
     });
 }
