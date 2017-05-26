@@ -6,7 +6,8 @@ $( document ).ready(function() {
     $.post('/getUser', function(res) {
         currentUser = res;
         if(currentUser.roleId &&  currentUser.roleId === 2) {
-            $('p#creareCont').remove();
+            $('#creareCont').remove();
+            $('#sep').remove();
         }
         else if((currentUser.roleId && currentUser.roleId === 3) || !currentUser.roleId) {
             $('.dropdown').hide();
