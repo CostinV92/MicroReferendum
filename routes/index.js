@@ -46,6 +46,11 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
     res.send('ok');
 });
 
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.status(200).send();
+})
+
 router.post('/getUser', function(req, res) {
     return mrefctrl.getUser(req, res);
 });
