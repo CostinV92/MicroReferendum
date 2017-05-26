@@ -42,7 +42,14 @@ router.get('/myPolls', function(req, res) {
     if(!req.isAuthenticated())
         res.status(401).send();
     else
-        return mrefctrl.myVotes(req, res);
+        return mrefctrl.myPolls(req, res);
+});
+
+router.get('/getMyPolls', function(req, res) {
+    if(!req.isAuthenticated())
+        res.status(401).send();
+    else
+        return mrefctrl.getMyPolls(req, res);
 });
 
 router.post('/register', function(req, res) {

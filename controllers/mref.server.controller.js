@@ -88,7 +88,11 @@ exports.vote = function(req, res) {
     res.status(200).send();
 }
 
-exports.myVotes = function(req, res) {
+exports.myPolls = function(req, res) {
+    res.render('myPolls');
+}
+
+exports.getMyPolls = function(req, res) {
     var user = req.user;
 
     model.Referendum.find({ createdBy: user._id }, function(err, polls) {

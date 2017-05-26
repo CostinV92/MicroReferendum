@@ -3,19 +3,13 @@ var currentDate = new Date();
 $.draw ;
 var currentUser;
 
-$( document ).ready(function() {
-
-    $.urlParam = function(name) {
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        return results[1] || 0;
-    }
-
+$( document ).ready(function() {   
     $.post('/getUser', function(res) {
         currentUser = res;
     });
 
-    function filter_by_county(id) {
-        $.get('/pollsList?id=' + id)
+    function getMyPolls() {
+        $.get('/getMyPolls')
         .done(function(data) {
             $.draw(data);
         })
@@ -39,7 +33,7 @@ $( document ).ready(function() {
         $('div#poll-list').html(html);
     }
 
-    filter_by_county($.urlParam('region'));
+    getMyPolls();
 
 });
 
