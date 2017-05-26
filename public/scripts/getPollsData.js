@@ -259,7 +259,7 @@ function create_poll(id) {
                     html += '</div>';
                 } else { 
                     html += '<p>Votul s-a incheiat.</p>';
-                    html += '<span>Rezultatul votului este:' + /*procent*/ '100% DA -' /*procent*/ + '0% NU</span><br>';
+                    html += '<span>Rezultatul votului este:' + 'DA -' + polls[i].yesVotes + 'NU-' + polls[i].noVotes + '</span><br>';
                 }
                 
             }
@@ -305,25 +305,4 @@ function deletePoll(id) {
 
 function closePoll() {
     $('div#poll-vote').hide();
-}
-
-function defaultVals() {
-    var inputs, index;
-    inputs = document.getElementsByTagName('input');
-    for (index = 0; index < inputs.length; ++index) {
-        console.log(input[i]);/*
-         for(var k = 0; k < polls.length; ++k) {
-            for(var i = 0; i < polls[k].tags.length; ++i)
-*/
-                /*if($(input[i].val() === polls[i].tags[i])
-                    console.log('da');*/
-                 /*   $("input[type='checkbox']").attr(checked);
-            for(var j = 0; j < polls[k].region.length ; ++j)
-                if($("input[type='checkbox']").val() === polls[i].tags[j])
-                    $("input[type='checkbox']").attr(checked);*/
-        
-
-
-    // deal with inputs[index] element.
-    }
 }
