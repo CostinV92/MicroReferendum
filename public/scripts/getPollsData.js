@@ -115,10 +115,14 @@ function create_poll(id) {
                     '<label>Agricutura</label>' +
                     '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Sport" name="category" id="SP" onclick="add_cat(name)" disabled>' +
                     '<label>Sport</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled' +
-                    '<label>Spatii Verzi</label>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled>' +
+                    '<label>Spatii verzi</label>' +
                     '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Economie" name="category" id="EC" onclick="add_cat(name)" disabled>' +
                     '<label>Economie</label>' +
+                    /*'<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled' +
+                    '<label>Spatii Verzi</label>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Economie" name="category" id="EC" onclick="add_cat(name)" disabled>' +
+                    '<label>Economie</label>' +*/
                     '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Altele" name="category" id="AL" onclick="add_cat(name)" disabled>' +
                     '<label>Altele</label>' +
                 '</div>' +
@@ -339,8 +343,9 @@ function deletePoll(id) {
     }
     $.post('/deletePoll', { _id: id }, function(){
         console.log('Succes');
+        $.draw(polls);
     });
-    $.draw(polls);
+    
 }
 
 function closePoll() {
