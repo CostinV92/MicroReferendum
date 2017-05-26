@@ -218,14 +218,13 @@ function create_poll(id) {
                 '</div>' +
                 '<div id="butoane-CRUD" style="float:right;margin-bottom:50px;">' +
                     '<button onclick="editPoll()">Editeaza</button><!-- devine salveaza cu onclick="poll_info()"-->' +
-                    '<button onclick="deletePoll('+ polls[i]._id +'">Sterge</button><!-- devine renunta si inchide popup-ul-->' +
+                    '<button onclick="deletePoll('+ "'" +polls[i]._id +"'"+')">Sterge</button><!-- devine renunta si inchide popup-ul-->' +
                 '</div>' +
             '</form></div>'
             break;
             }
         }
         $("div#poll-vote").html(html);
-        defaultVals();
     }
     else {
         var html = '<div>';
@@ -330,13 +329,18 @@ function updatePoll() {
 }
 
 function deletePoll(id) {
+    var newLength;
     for(var i = 0; polls.length; ++i){
-        polls.splice(i,1);
-        polls.length--;
+        if(polls[i]._id === id) {
+            polls.splice(i,1);
+            polls.length--;
+            break;
+        }
     }
     $.post('/deletePoll', { _id: id }, function(){
         console.log('Succes');
     });
+    $.draw(polls);
 }
 
 function closePoll() {

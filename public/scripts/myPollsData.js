@@ -36,7 +36,6 @@ $( document ).ready(function() {
     getMyPolls();
 
 });
-
 //Category Filter
 function add_cat(id) {
     if (filterList.indexOf(id) == -1){
@@ -212,14 +211,13 @@ function create_poll(id) {
                 '</div>' +
                 '<div id="butoane-CRUD" style="float:right;margin-bottom:50px;">' +
                     '<button onclick="editPoll()">Editeaza</button><!-- devine salveaza cu onclick="poll_info()"-->' +
-                    '<button onclick="deletePoll('+ polls[i]._id +'">Sterge</button><!-- devine renunta si inchide popup-ul-->' +
+                    '<button onclick="deletePoll('+ "'" +polls[i]._id +"'"+')">Sterge</button><!-- devine renunta si inchide popup-ul-->' +
                 '</div>' +
             '</form></div>'
             break;
             }
         }
         $("div#poll-vote").html(html);
-        defaultVals();
     }
     else {
         var html = '<div>';
@@ -289,20 +287,51 @@ function submit_vote(id, pollId) {
 }
 
 function editPoll() {
-   event.preventDefault();
-   $('input').removeAttr("disabled"); // Element(s) are now enabled.
-   $('textarea').removeAttr("disabled");
-   $('#butoane-CRUD').html("<button onclick='poll_info()'>Salveaza</button><button onclick='closePoll()'>Renunta</button>");
+    event.preventDefault();
+    $('input').removeAttr("disabled"); // Element(s) are now enabled.
+    $('textarea').removeAttr("disabled");
+    $('#butoane-CRUD').html("<button onclick='updatePoll()'>Salveaza</button><button onclick='closePoll()'>Renunta</button>");
+}
+
+function updatePoll() {
+    var title = $('#pollTitle').val();
+    var desc = $('#pollDesc').val();
+    var endDate = $('#endDate').val();
+    var category = [];
+    var county = [];
+
+    $("input:checkbox[name=category]:checked").each(function(){
+        category.push($(this).val());
+    });
+
+    $("input:checkbox[name=judet]:checked").each(function(){
+        county.push($(this).val());
+    });
+
+    $.ajax({
+        url: '/editPoll',
+        type: 'POST',
+        data: JSON.stringify({'title': title, 'desc': desc, 'endDate':endDate, 'category':category, county:county}),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: false,
+        success: function(msg) {
+            alert(msg);
+        }
+    });
 }
 
 function deletePoll(id) {
     for(var i = 0; polls.length; ++i){
-        polls.splice(i,1);
-        polls.length--;
+        if(polls[i]._id === id){
+            polls.splice(i,1);
+            polls.length--;
+        }
     }
     $.post('/deletePoll', { _id: id }, function(){
         console.log('Succes');
     });
+    $.draw(polls);
 }
 
 function closePoll() {
