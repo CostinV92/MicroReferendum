@@ -115,10 +115,14 @@ function create_poll(id) {
                     '<label>Agricutura</label>' +
                     '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Sport" name="category" id="SP" onclick="add_cat(name)" disabled>' +
                     '<label>Sport</label>' +
-                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled' +
-                    '<label>Spatii Verzi</label>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled>' +
+                    '<label>Spatii verzi</label>' +
                     '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Economie" name="category" id="EC" onclick="add_cat(name)" disabled>' +
                     '<label>Economie</label>' +
+                    /*'<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Spatii verzi" name="category" id="SV" onclick="add_cat(name)" disabled' +
+                    '<label>Spatii Verzi</label>' +
+                    '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Economie" name="category" id="EC" onclick="add_cat(name)" disabled>' +
+                    '<label>Economie</label>' +*/
                     '<input style="float:left;margin-left:25px;" type="checkbox" class="messageCheckbox" value="Altele" name="category" id="AL" onclick="add_cat(name)" disabled>' +
                     '<label>Altele</label>' +
                 '</div>' +
@@ -225,7 +229,6 @@ function create_poll(id) {
             }
         }
         $("div#poll-vote").html(html);
-        defaultVals();
     }
     else {
         var html = '<div>';
@@ -323,13 +326,19 @@ function updatePoll(pollIt) {
 }
 
 function deletePoll(id) {
+    var newLength;
     for(var i = 0; polls.length; ++i){
-        polls.splice(i,1);
-        polls.length--;
+        if(polls[i]._id === id) {
+            polls.splice(i,1);
+            polls.length--;
+            break;
+        }
     }
     $.post('/deletePoll', { _id: id }, function(){
         console.log('Succes');
+        $.draw(polls);
     });
+    
 }
 
 function closePoll() {
